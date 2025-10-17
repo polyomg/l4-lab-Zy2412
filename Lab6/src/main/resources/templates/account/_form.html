@@ -1,0 +1,24 @@
+<form action="/account/create" th:object="${item}" method="post">
+    <label for="username">Tên đăng nhập:</label><br>
+    <input type="text" id="username" th:field="*{username}" placeholder="Tên đăng nhập" /><br><br>
+    
+    <label for="password">Mật khẩu:</label><br>
+    <input type="password" id="password" th:field="*{password}" placeholder="Mật khẩu" /><br><br>
+    
+    <label for="fullname">Họ và tên:</label><br>
+    <input type="text" id="fullname" th:field="*{fullname}" placeholder="Họ và tên" /><br><br>
+    
+    <label for="email">Email:</label><br>
+    <input type="email" id="email" th:field="*{email}" placeholder="Email" /><br><br>
+    
+    <label for="photo">Ảnh:</label><br>
+    <input type="file" id="photo" th:field="*{photo}" /><br><br>
+    
+    <label><input type="checkbox" th:field="*{activated}" /> Đã kích hoạt</label><br>
+    <label><input type="checkbox" th:field="*{admin}" /> Quản trị viên</label><br><br>
+    
+    <button type="submit" formaction="/account/create">Tạo</button>
+    <button type="submit" formaction="/account/update">Cập nhật</button>
+    <a th:href="@{|/account/delete/${item.username}|}">Xóa</a>
+    <a href="/account/index">Đặt lại</a>
+</form>

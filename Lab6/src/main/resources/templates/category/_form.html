@@ -1,0 +1,8 @@
+<form th:object="${item}" method="post">
+    <input th:field="*{id}" placeholder="Category Id?"/>
+    <input th:field="*{name}" placeholder="Category Name?"/>
+    <button formaction="/category/create">Create</button>
+    <button formaction="/category/update">Update</button>
+    <a th:href="@{|/category/delete/${item.id}|}">Delete</a>
+    <a href="/category/index">Reset</a>
+</form>

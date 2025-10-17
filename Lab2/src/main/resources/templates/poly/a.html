@@ -1,0 +1,14 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>View A</title>
+</head>
+<body>
+    <h1>Hiển thị Model Attribute:</h1>
+    <h1 th:text="${message}"></h1>
+
+    <h1>Hiển thị Redirect Parameter:</h1>
+    <h1 th:text="${param.message}"></h1>
+</body>
+</html>

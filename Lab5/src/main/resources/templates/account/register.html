@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Đăng ký</title>
+</head>
+<body>
+    <h2>Đăng ký tài khoản</h2>
+    <form th:action="@{/account/register}" method="post" enctype="multipart/form-data">
+        <p>
+            Username: <input name="username" th:value="${username}" required />
+        </p>
+        <p>
+            Password: <input name="password" type="password" required />
+        </p>
+        <p>
+            Avatar: <input name="photo" type="file" id="photoInput" accept="image/*" required />
+        </p>
+        <p>
+            <img id="previewImage" src="#" alt="Xem trước ảnh" style="display: none; max-width: 200px; height: auto;">
+        </p>
+        <p>
+            <button type="submit">Đăng ký</button>
+        </p>
+        <p th:if="${message}" th:text="${message}"></p>
+        <p th:if="${uploadedPhoto}">
+            <img th:src="@{/images/users/} + ${uploadedPhoto}" style="max-width: 200px; height: auto;"/>
+        </p>
+    </form>
+    
+    <p th:if="${param.registered}">
+        Bạn đã đăng ký thành công! <a th:href="@{/account/login}">Đăng nhập ngay</a>
+    </p>
+
+    <script>
+        const photoInput = document.getElementById('photoInput');
+        const previewImage = document.getElementById('previewImage');
+
+        photoInput.addEventListener('change', function(event) {
+            const file = event.target.files[0];
+            if (file) {
+                const reader = new FileReader();
+                reader.onload = function(e) {
+                    previewImage.src = e.target.result;
+                    previewImage.style.display = 'block';
+                };
+                reader.readAsDataURL(file);
+            }
+        });
+    </script>
+</body>
+</html>
