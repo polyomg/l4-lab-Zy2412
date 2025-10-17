@@ -1,0 +1,29 @@
+<form th:object="${item}" method="post">
+    <label>ID:</label>
+    <input th:field="*{id}" readonly placeholder="Tự động tạo" /><br>
+    
+    <label>Tên sản phẩm:</label>
+    <input th:field="*{name}" placeholder="Tên sản phẩm" /><br>
+    
+    <label>Hình ảnh:</label>
+    <input th:field="*{image}" placeholder="Tên file ảnh" /><br>
+    
+    <label>Giá:</label>
+    <input th:field="*{price}" type="number" step="0.01" placeholder="Giá" /><br>
+    
+    <label>Ngày tạo:</label>
+    <input th:field="*{createDate}" type="date" /><br>
+    
+    <label>Trạng thái:</label>
+    <input type="checkbox" th:field="*{available}" /> Còn hàng<br>
+    
+    <label>Loại sản phẩm:</label>
+    <select th:field="*{category.id}">
+        <option th:each="c : ${categories}" th:value="${c.id}" th:text="${c.name}"></option>
+    </select><br>
+
+    <button type="submit" formaction="/product/create">Tạo</button>
+    <button type="submit" formaction="/product/update">Cập nhật</button>
+    <a th:href="@{|/product/delete/${item.id}|}">Xóa</a>
+    <a href="/product/index">Đặt lại</a>
+</form>

@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Đăng Nhập</title>
+</head>
+<body>
+    <h1>Đăng Nhập</h1>
+    <i th:if="${message}" th:text="${message}" style="color:red;">Error message</i>
+    <form th:action="@{/auth/login}" method="post">
+        <label>Username:</label>
+        <input name="username">
+        <br>
+        <label>Password:</label>
+        <input name="password" type="password">
+        <hr>
+        <button>Login</button>
+    </form>
+</body>
+</html>

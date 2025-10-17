@@ -4,6 +4,7 @@ import java.util.Date;
 import org.springframework.format.annotation.DateTimeFormat;
 
 import jakarta.validation.constraints.Email;
+import jakarta.validation.constraints.Max;
 import jakarta.validation.constraints.Min;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
@@ -35,6 +36,7 @@ public class Staff {
 
     @NotNull(message = "Chưa nhập lương")
     @Min(value = 1000, message = "Lương tối thiểu phải là 1000")
+    @Max(value = 10000, message = "Lương cao nhất phải là 10000")
     private Double salary;
 
     private Integer level;

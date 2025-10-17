@@ -1,0 +1,13 @@
+<form action="/product/search" method="post">
+    <input name="min" th:value="${param.min}" placeholder="Min Price?">
+    <input name="max" th:value="${param.max}" placeholder="Max Price?">
+    <button>Search</button>
+</form>
+<table>
+    <tr th:each="item : ${items}">
+        <td th:text="${item.id}"></td>
+        <td th:text="${item.name}"></td>
+        <td th:text="${item.price}"></td>
+        <td th:text="${item.createDate}"></td>
+    </tr>
+</table>

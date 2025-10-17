@@ -1,0 +1,26 @@
+<form action="/product/search-and-page" method="get">
+    <input name="keywords" th:value="${keywords}" placeholder="Search by name">
+    <button>Search</button>
+</form>
+
+<table>
+    <tr th:each="item : ${page.content}">
+        <td th:text="${item.id}"></td>
+        <td th:text="${item.name}"></td>
+        <td th:text="${item.price}"></td>
+        <td th:text="${item.createDate}"></td>
+    </tr>
+</table>
+<div>
+    <a th:href="@{|/product/search-and-page?p=0|}">First</a>
+    <a th:href="@{|/product/search-and-page?p=${page.number - 1}|}">Previous</a>
+    <a th:href="@{|/product/search-and-page?p=${page.number + 1}|}">Next</a>
+    <a th:href="@{|/product/search-and-page?p=${page.totalPages - 1}|}">Last</a>
+</div>
+<ul>
+    <li>Số thực thể hiện tại: [[${page.numberOfElements}]]</li>
+    <li>Trang số: [[${page.number}]]</li>
+    <li>Kích thước trang: [[${page.size}]]</li>
+    <li>Tổng số thực thể: [[${page.totalElements}]]</li>
+    <li>Tổng số trang: [[${page.totalPages}]]</li>
+</ul>

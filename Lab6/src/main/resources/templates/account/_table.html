@@ -1,0 +1,22 @@
+<table border="1" width="100%">
+    <thead>
+        <tr>
+            <th>Tên đăng nhập</th>
+            <th>Họ và tên</th>
+            <th>Email</th>
+            <th>Đã kích hoạt</th>
+            <th>Quản trị viên</th>
+            <th>Thao tác</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr th:each="item : ${items}">
+            <td th:text="${item.username}"></td>
+            <td th:text="${item.fullname}"></td>
+            <td th:text="${item.email}"></td>
+            <td th:text="${item.activated}"></td>
+            <td th:text="${item.admin}"></td>
+            <td><a th:href="@{|/account/edit/${item.username}|}">Sửa</a></td>
+        </tr>
+    </tbody>
+</table>

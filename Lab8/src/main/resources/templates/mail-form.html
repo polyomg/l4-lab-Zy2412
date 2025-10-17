@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Gửi Email</title>
+    <style>
+        body { font-family: sans-serif; margin: 2em; }
+        form { display: flex; flex-direction: column; max-width: 600px; }
+        label { margin-top: 10px; }
+        input, textarea { padding: 8px; margin-top: 5px; }
+        button { margin-top: 15px; padding: 10px; cursor: pointer; }
+        .message { margin-bottom: 1em; padding: 1em; border: 1px solid; }
+    </style>
+</head>
+<body>
+    <h1>Soạn Email</h1>
+    
+    <div th:if="${message}" class="message" th:text="${message}"></div>
+
+    <form method="post" enctype="multipart/form-data" th:object="${mail}">
+        <label for="from">From:</label>
+        <input id="from" type="text" th:field="*{from}" readonly/>
+        
+        <label for="to">To:</label>
+        <input id="to" type="email" th:field="*{to}" required/>
+        
+        <label for="cc">CC:</label>
+        <input id="cc" type="text" th:field="*{cc}"/>
+        
+        <label for="bcc">BCC:</label>
+        <input id="bcc" type="text" th:field="*{bcc}"/>
+        
+        <label for="subject">Subject:</label>
+        <input id="subject" type="text" th:field="*{subject}" required/>
+        
+        <label for="body">Body:</label>
+        <textarea id="body" th:field="*{body}" rows="10"></textarea>
+        
+        <label for="attachments">Attachments:</label>
+        <input id="attachments" type="file" name="attachments" multiple/>
+        
+        <hr>
+        
+        <button type="submit" th:formaction="@{/mail/send}">Gửi Trực Tiếp</button>
+        <button type="submit" th:formaction="@{/mail/queue}">Xếp Vào Hàng Đợi</button>
+    </form>
+</body>
+</html>

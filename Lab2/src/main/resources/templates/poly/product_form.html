@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Product Form</title>
+</head>
+<body>
+    <h2>Nhập sản phẩm</h2>
+    <form action="/product/save" method="post" th:object="${p2}">
+        <input type="text" th:field="*{name}" placeholder="Tên sản phẩm">
+        <input type="number" th:field="*{price}" step="0.01" placeholder="Giá">
+        <button type="submit">Save</button>
+    </form>
+
+    <h3>Sản phẩm mặc định</h3>
+    <ul>
+        <li th:text="${p1.name}"></li>
+        <li th:text="${p1.price}"></li>
+    </ul>
+
+    <h3>Danh sách sản phẩm (có phân trang)</h3>
+
+    <!-- Chọn page size -->
+    <form method="get" action="/product/form">
+        <label>Page size:</label>
+        <select name="size" onchange="this.form.submit()">
+            <option th:value="5" th:selected="${pageSize == 5}">5</option>
+            <option th:value="10" th:selected="${pageSize == 10}">10</option>
+            <option th:value="20" th:selected="${pageSize == 20}">20</option>
+        </select>
+        <input type="hidden" name="page" th:value="${currentPage}">
+    </form>
+
+    <ul>
+        <th:block th:each="item : ${items}">
+            <li th:text="${item.name} + ' - ' + ${item.price}"></li>
+        </th:block>
+    </ul>
+
+    <!-- Phân trang -->
+    <div>
+        <span>Page: </span>
+        <th:block th:each="i : ${#numbers.sequence(1, totalPages)}">
+            <a th:href="@{'/product/form?page=' + ${i} + '&size=' + ${pageSize}}"
+               th:text="${i}"
+               th:classappend="${i == currentPage} ? 'active' : ''"></a>
+            &nbsp;
+        </th:block>
+    </div>
+</body>
+</html>
